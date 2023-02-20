@@ -5,6 +5,8 @@ const express = require('express'),
 
 app.use(bodyParser.json());
 
+
+//user list
 let users = [
     {
         id: 1,
@@ -19,6 +21,7 @@ let users = [
 
 ]
 
+//movie list
 let movies = [
     {
         "Title":"The Shawshank Redemption",
