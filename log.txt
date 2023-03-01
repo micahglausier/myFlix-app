@@ -174,3 +174,15 @@ Timestamp: Tue Feb 28 2023 09:11:26 GMT-0600 (Central Standard Time)
 ::1 - - [01/Mar/2023:22:55:15 +0000] "PUT /users/karolineglausier/movies/63f7884c47fd9b657be6dbff HTTP/1.1" 404 193
 ::1 - - [01/Mar/2023:22:55:21 +0000] "POST /users/karolineglausier/movies/63f7884c47fd9b657be6dbff HTTP/1.1" 500 43
 ::1 - - [01/Mar/2023:22:56:24 +0000] "DELETE /users/karolineglausier/movies/63f78d7747fd9b657be6dc06 HTTP/1.1" 500 43
+::1 - - [01/Mar/2023:23:02:46 +0000] "DELETE /users/63f7a3ea47fd9b657be6dc0a/Pulp%20Fiction HTTP/1.1" 404 187
+::1 - - [01/Mar/2023:23:03:26 +0000] "DELETE /users/63f7a3ea47fd9b657be6dc0a/Pulp%20Fiction HTTP/1.1" 404 187
+::1 - - [01/Mar/2023:23:03:40 +0000] "GET /users HTTP/1.1" 201 837
+::1 - - [01/Mar/2023:23:04:25 +0000] "DELETE /users/63f7a3ea47fd9b657be6dc0a/movies/Pulp%20Fiction HTTP/1.1" 500 43
+::1 - - [01/Mar/2023:23:08:41 +0000] "GET / HTTP/1.1" 304 -
+::1 - - [01/Mar/2023:23:08:42 +0000] "GET / HTTP/1.1" 304 -
+::1 - - [01/Mar/2023:23:13:18 +0000] "GET / HTTP/1.1" 200 24
+::1 - - [01/Mar/2023:23:13:22 +0000] "GET /users HTTP/1.1" 201 837
+::1 - - [01/Mar/2023:23:13:50 +0000] "GET /users/karolineglausier HTTP/1.1" 200 205
+::1 - - [01/Mar/2023:23:14:33 +0000] "PUT /users/karolineglausier HTTP/1.1" 500 43
+::1 - - [01/Mar/2023:23:18:02 +0000] "GET /users/karolineglausier HTTP/1.1" 200 205
+::1 - - [01/Mar/2023:23:18:19 +0000] "DELETE /users/karolineglausier/movies/63f78d7747fd9b657be6dc06 HTTP/1.1" 500 43
