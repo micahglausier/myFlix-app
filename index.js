@@ -1,10 +1,12 @@
 const express = require('express'),
-    app = express(),
-    bodyParser = require('body-parser'),
-    uuid = require('uuid');
+  app = express(),
+  morgan = require('morgan'),
+  bodyParser = require('body-parser'),
+  uuid = require('uuid'),
+  fs = require('fs'),
+  path = require('path');
 
 app.use(bodyParser.json());
-
 
 //user list
 let users = [
@@ -89,18 +91,21 @@ let movies = [
 
 ];
 
-//create New Users
+//Add a user
 app.post('/users', (req, res) => {
     const newUser = req.body;
-
+    // We can only use the above code because of bodyParser
     if (newUser.name) {
-        newUser.id = uuid.v4();
-        users.push(newUser);
-        res.status(201).json(newUser)
+      // newUser is an object so we can assign is a property (code below)
+      newUser.id = uuid.v4();
+      users.push(newUser);
+      res.status(201).json(newUser)
+      // 201 = something (user) was created.
     } else {
-        res.status(400).send('users need name')
+      res.status(400).send('User needs name')
+      // Bad request error ^
     }
-})
+  })
 
 //update user information
 app.put('/users/:id', (req, res) => {
@@ -114,9 +119,7 @@ app.put('/users/:id', (req, res) => {
         res.status(200).json(user);
     } else {
         res.status(400).send('no such user')
-    }
-
-   
+    }  
 })
 
 // create new movies to user
@@ -204,8 +207,30 @@ app.get('/movies/directors/:directorName', (req, res) => {
     }
 })
 
+app.use(express.static('public'));
+//Morgan middleware library to log all requests 
+app.use(morgan('common'));
 
+//Get Requests'
+app.get('/', (req, res) => { 
+    console.log('Welcome to myFlix');
+    res.send('Welcome to myFlix');
+});
+
+//get Top ten movies
+app.get('/movies', (req, res) => {                  
+    console.log('Top movies request');
+    res.json(topMovies);
+  });
+
+  // Morgan middleware error
+  app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Error');
+  });
 
  
-//Listen for requests
-app.listen(8080, () => console.log("listening on 8080"))
+// listen for requests port 8080
+app.listen(8080, () => {
+console.log('Your app is listening on port 8080.');
+});
