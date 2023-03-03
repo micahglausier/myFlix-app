@@ -11,16 +11,6 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-// Suppresses deprecation warning
-mongoose.set('strictQuery', true);
-//Integrating Mongoose with RESTAPI cfDB is the name of Database with movies and users
-mongoose.connect('mongodb://localhost:27017/cfDB', { useNewUrlParser: true, useUnifiedTopology: true });
-
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-
 //Routing of static files
 app.use(express.static('public'));
 
@@ -31,6 +21,23 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
   flags: 'a',
 });
 app.use(morgan('common', {stream: accessLogStream}));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Suppresses deprecation warning
+mongoose.set('strictQuery', true);
+//Integrating Mongoose with RESTAPI cfDB is the name of Database with movies and users
+mongoose.connect('mongodb://localhost:27017/cfDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+
+//importing auth.js
+let auth = require('./auth')(app);
+
+//require and import passport.js
+const passport = require('passport');
+require('./passport');
+
 
 // GET requests
 app.get('/', (req, res) => {
@@ -200,7 +207,7 @@ app.delete('/users/:Username', (req, res) => {
 
 
 // Get all movies
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(200).json(movies);
@@ -225,7 +232,7 @@ app.get('/movies/:Title', (req, res) => {
 });
 
 // Get a description of Genre
-app.get('/movies/genre/:genreName', (req, res) => {
+app.get('/movies/genres/:genreName', (req, res) => {
   Movies.findOne({ 'Genre.Name': req.params.genreName })
     .then((movie) => {
       res.json(movie.Genre);
