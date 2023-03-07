@@ -309,3 +309,4 @@ Timestamp: Tue Feb 28 2023 09:11:26 GMT-0600 (Central Standard Time)
 ::1 - - [07/Mar/2023:20:25:45 +0000] "GET /documentation HTTP/1.1" 200 4480
 ::1 - - [07/Mar/2023:20:26:02 +0000] "GET /movies HTTP/1.1" 200 7860
 ::1 - - [07/Mar/2023:20:26:09 +0000] "GET /users HTTP/1.1" 201 2689
+::1 - - [07/Mar/2023:20:46:11 +0000] "POST /users HTTP/1.1" 201 239
