@@ -306,3 +306,6 @@ Timestamp: Tue Feb 28 2023 09:11:26 GMT-0600 (Central Standard Time)
 ::1 - - [07/Mar/2023:18:08:24 +0000] "GET /movies/directors/Jonathan%20Demme HTTP/1.1" 200 139
 ::1 - - [07/Mar/2023:18:09:02 +0000] "GET /movies/directors/Jonathan%20Demme/movies HTTP/1.1" 200 67
 ::1 - - [07/Mar/2023:18:09:52 +0000] "GET /documentation HTTP/1.1" 200 4480
+::1 - - [07/Mar/2023:20:25:45 +0000] "GET /documentation HTTP/1.1" 200 4480
+::1 - - [07/Mar/2023:20:26:02 +0000] "GET /movies HTTP/1.1" 200 7860
+::1 - - [07/Mar/2023:20:26:09 +0000] "GET /users HTTP/1.1" 201 2689
