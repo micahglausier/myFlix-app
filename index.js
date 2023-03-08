@@ -58,7 +58,7 @@ require('./passport');
 
 
 // GET requests
-app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/', (req, res) => {
 res.send('Welcome to my myFlix!');
 });
 
