@@ -236,7 +236,7 @@ app.delete('/users/:Username', passport.authenticate('jwt', {session: false}), (
 //GET/READ
 
 app.get('/', (req, res) => {
-    res.send("If you're looking for movies, you've come to the right place. Try adding something else to your URL request to get this party started");
+    res.send("Welcome to <b>Micah's myFlix App</b>!");
 }); 
 
 // GET all movies
