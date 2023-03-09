@@ -178,22 +178,31 @@ app.put('/users/:Username', passport.authenticate('jwt', {session: false}),
     });
   });
 
-// allow users to add a movie to their list of favorites POST
-
-app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {session: false}), (req, res) => {
-    Users.findOneAndUpdate({ Username: req.params.Username }, {
-       $push: { FaveoriteMovies: req.params.MovieID }
-     },
-     { new: true }, // This line makes sure that the updated document is returned
-    (err, updatedUser) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
+// Add a movie to a user's list of favorites
+app.post('/users/:username/favoriteMovies/:movieid', passport.authenticate('jwt', { session: false }), function (req, res) {
+  const username = req.params.username;
+  const movieId = req.params.movieid;
+  Users.findOne({ Username: username, FavoriteMovies: movieId })
+    .then(function (movieIsPresent) {
+      if (movieIsPresent) {
+        return res.status(409).send('Movie is already on your list.');
       } else {
-        res.json(updatedUser);
+        Users.findOneAndUpdate(
+          { Username: username },
+          {
+            // Only adds if not already present (but wouldn't throw error)
+            $addToSet: { FavoriteMovies: movieId },
+          },
+          { new: true }
+        )
+          .then(function (updatedUser) {
+            res.status(200).json(updatedUser);
+          })
+          .catch(function (error) {
+            console.error(error);
+            res.status(500).send('Error: ' + error);
+          });
       }
-    });
-  });
 
 // allow users to delete movies from faveMovies list DELETE
 
