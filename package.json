@@ -1,16 +1,25 @@
 {
   "name": "myflix",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server-side of a movie web app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micahglausier/myFlix-app.git"
+  },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/micahglausier/myFlix-app.git/issues"
+  },
+  "homepage": "https://github.com/micahglausier/myFlix-app.git#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
@@ -21,6 +30,7 @@
     "lodash": "^4.17.21",
     "mongoose": "6.8.4",
     "morgan": "^1.10.0",
+    "myflix": "github:micahglausier/myFlix-app",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
