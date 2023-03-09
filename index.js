@@ -106,7 +106,7 @@ app.post('/users',
       });
   });
 
-  /* Get all users
+//Get all users
 app.get('/users', (req, res) => {
     Users.find()
       .then((users) => {
@@ -116,7 +116,7 @@ app.get('/users', (req, res) => {
         console.error(err);
         res.status(500).send('Error: ' + err);
       });
-  }); */
+  }); 
 
   // Get a user by username - requires a CONDITION .Username
 app.get('/users/:Username', passport.authenticate('jwt', {session: false}), (req, res) => {
