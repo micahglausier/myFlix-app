@@ -179,7 +179,7 @@ app.put('/users/:Username', passport.authenticate('jwt', {session: false}),
   });
 
 // Add a movie to a user's list of favorites
-app.post('/users/:username/favoriteMovies/:movieid', passport.authenticate('jwt', { session: false }), function (req, res) {
+app.post('/users/:username/favoriteMovies/:objectid', passport.authenticate('jwt', { session: false }), function (req, res) {
   const username = req.params.username;
   const movieId = req.params.movieid;
   Users.findOne({ Username: username, FavoriteMovies: movieId })
@@ -204,22 +204,25 @@ app.post('/users/:username/favoriteMovies/:movieid', passport.authenticate('jwt'
           });
       }
 
-// allow users to delete movies from faveMovies list DELETE
-
-app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', {session: false}), (req, res) => {
-    Users.findOneAndUpdate({ Username: req.params.Username }, {
-       $pull: { FaveoriteMovies: req.params.MovieID }
-     },
-     { new: true }, // This line makes sure that the updated document is returned
-    (err, updatedUser) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-      } else {
-        res.json(updatedUser);
-      }
+// DELETE a movie to a user's list of favorites
+app.delete('/users/:username/favoriteMovies/:objectid', passport.authenticate('jwt', { session: false }), function (req, res) {
+  const username = req.params.username;
+  const movieId = req.params.movieid;
+  Users.findOneAndUpdate(
+    { Username: username },
+    {
+      $pull: { FavoriteMovies: movieId },
+    },
+    { new: true }
+  )
+    .then(function (updatedUser) {
+      res.status(200).json(updatedUser);
+    })
+    .catch(function (error) {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
     });
-  });
+});
 
 // Delete a user by username
 app.delete('/users/:Username', passport.authenticate('jwt', {session: false}), (req, res) => {
