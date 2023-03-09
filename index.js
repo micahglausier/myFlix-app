@@ -179,7 +179,7 @@ app.put('/users/:Username', passport.authenticate('jwt', {session: false}),
   });
 
 // Add a movie to a user's list of favorites
-app.post('/users/:username/favoriteMovies/:objectid', passport.authenticate('jwt', { session: false }), function (req, res) {
+app.post('/users/:username/favoriteMovies/:movieid', passport.authenticate('jwt', { session: false }), function (req, res) {
   const username = req.params.username;
   const movieId = req.params.movieid;
   Users.findOne({ Username: username, FavoriteMovies: movieId })
@@ -203,9 +203,15 @@ app.post('/users/:username/favoriteMovies/:objectid', passport.authenticate('jwt
             res.status(500).send('Error: ' + error);
           });
       }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
 
 // DELETE a movie to a user's list of favorites
-app.delete('/users/:username/favoriteMovies/:objectid', passport.authenticate('jwt', { session: false }), function (req, res) {
+app.delete('/users/:username/favoriteMovies/:movieid', passport.authenticate('jwt', { session: false }), function (req, res) {
   const username = req.params.username;
   const movieId = req.params.movieid;
   Users.findOneAndUpdate(
