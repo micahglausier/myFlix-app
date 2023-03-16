@@ -282,7 +282,7 @@ app.get('/movies/:Title', passport.authenticate('jwt', {session: false}), (req, 
       });
   });
 
-// Get a Genre by Genrename
+// Get a Genre by Genre name
 
 app.get('/movies/genre/:genreName', passport.authenticate('jwt', {session: false}), (req, res) => {
     Movies.findOne({ 'Genre.Name': req.params.genreName })
