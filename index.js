@@ -45,7 +45,7 @@ app.use(cors({
     }
     return callback(null, true);
   }
-}));
+ }));
 
 //importing auth.js
 let auth = require('./auth')(app);
