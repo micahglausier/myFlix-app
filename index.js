@@ -34,7 +34,9 @@ mongoose.set('strictQuery', true);
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const cors = require('cors');
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 // let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/'];
 
