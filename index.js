@@ -11,6 +11,10 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 
+const corsOptions ={
+  origin: "http://localhost:1234/",
+};
+
 const cors = require('cors');
 app.use(cors());
 
