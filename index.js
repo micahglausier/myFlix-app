@@ -34,7 +34,7 @@ mongoose.set('strictQuery', true);
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:8080', 'https://myflix-micah.herokuapp.com/'];
 
 app.use(cors({
   origin: (origin, callback) => {
