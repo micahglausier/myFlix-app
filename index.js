@@ -11,24 +11,23 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-// const corsOptions ={
-//   origin: "'https://myflix-micah.herokuapp.com/'",
-// };
-
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/', 'https://myflix-micah.herokuapp.com/movies', 'https://git.heroku.com/myflix-micah.git'
-];
+app.use(cors());
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) { // If a specific origin isn’t found on the list of allowed origins
-      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
-      return callback(new Error(message), false);
-    }
-    return callback(null, true);
-  }
-}));
+// const cors = require('cors');
+// let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/', 'https://myflix-micah.herokuapp.com/movies', 'https://git.heroku.com/myflix-micah.git'
+// ];
+
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if (!origin) return callback(null, true);
+//     if (allowedOrigins.indexOf(origin) === -1) { // If a specific origin isn’t found on the list of allowed origins
+//       let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+//       return callback(new Error(message), false);
+//     }
+//     return callback(null, true);
+//   }
+// }));
 
 
 
