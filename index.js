@@ -10,6 +10,7 @@ const Models = require('./models.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
+
 const cors = require('cors');
 app.use(cors());
 
