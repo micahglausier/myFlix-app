@@ -16,7 +16,7 @@ const Users = Models.User;
 // };
 
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/', 'https://myflix-micah.herokuapp.com/', 'https://git.heroku.com/myflix-micah.git'
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/', 'https://myflix-micah.herokuapp.com/movies', 'https://git.heroku.com/myflix-micah.git'
 ];
 
 app.use(cors({
