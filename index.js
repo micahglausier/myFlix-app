@@ -11,9 +11,9 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-const corsOptions ={
-  origin: "'https://myflix-micah.herokuapp.com/'",
-};
+// const corsOptions ={
+//   origin: "'https://myflix-micah.herokuapp.com/'",
+// };
 
 const cors = require('cors');
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234/', 'https://myflix-micah.herokuapp.com/', 'https://git.heroku.com/myflix-micah.git'
