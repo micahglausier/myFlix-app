@@ -12,7 +12,7 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 const corsOptions ={
-  origin: "http://localhost:1234/",
+  origin: "'https://myflix-micah.herokuapp.com/'",
 };
 
 const cors = require('cors');
